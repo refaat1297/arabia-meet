@@ -1,5 +1,11 @@
+
+
 <template>
+<div>
   <div>
-    <h1>hello from the arabia meet</h1>
+    <nuxt-link to="/">home</nuxt-link>
+    <nuxt-link to="/login">login</nuxt-link>
   </div>
+  <NuxtPage />
+</div>
 </template>
