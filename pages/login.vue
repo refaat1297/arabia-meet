@@ -32,9 +32,9 @@
 </script>
 
 <template>
-  <div>
-    <h1>login page</h1>
-    <button @click="login">login</button>
+  <div class="login-page">
+<!--    <h1>login page</h1>-->
+<!--    <button @click="login">login</button>-->
   </div>
 </template>
 
