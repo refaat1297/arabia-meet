@@ -5,6 +5,8 @@ export default defineNuxtConfig({
     url: "http://localhost:8080"
   },
 
+  modules: ['@nuxt/devtools'],
+
   runtimeConfig: {
     public: {
       FIREBASE_API_KEY: process.env.FIREBASE_API_KEY,
