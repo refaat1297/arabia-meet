@@ -5,7 +5,7 @@
 </script>
 
 <template>
-  <Login />
+  <LazyAuthLogin />
 </template>
 
 <style lang="scss"></style>

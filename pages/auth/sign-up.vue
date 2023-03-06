@@ -5,7 +5,7 @@ definePageMeta({
 </script>
 
 <template>
-  <SignUp />
+  <LazyAuthSignUp />
 </template>
 
 <style lang="scss"></style>
