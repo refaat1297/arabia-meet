@@ -1,0 +1,64 @@
+@font-face {
+  font-family: RegularFont;
+  src: url("~/assets/fonts/Lato-Regular.ttf");
+}
+
+.font-lato-regular {
+  font-family: RegularFont, sans-serif;
+}
+
+/* ------------------------------------------------- */
+
+@font-face {
+  font-family: BlackFont;
+  src: url("~/assets/fonts/Lato-Black.ttf");
+}
+
+.font-lato-black {
+  font-family: BlackFont, sans-serif;
+}
+
+/* ------------------------------------------------- */
+
+@font-face {
+  font-family: BoldFont;
+  src: url("~/assets/fonts/Lato-Bold.ttf");
+}
+
+.font-lato-bold {
+  font-family: BoldFont, sans-serif;
+}
+
+/* ------------------------------------------------- */
+
+@font-face {
+  font-family: LightFont;
+  src: url("~/assets/fonts/Lato-Light.ttf");
+}
+
+.font-lato-light {
+  font-family: LightFont, sans-serif;
+}
+
+/* ------------------------------------------------- */
+
+@font-face {
+  font-family: RegularFont;
+  src: url("~/assets/fonts/Lato-Regular.ttf");
+}
+
+.-font-lato-regular {
+  font-family: RegularFont, sans-serif;
+}
+
+
+/* ------------------------------------------------- */
+
+@font-face {
+  font-family: ThinFont;
+  src: url("~/assets/fonts/Lato-Thin.ttf");
+}
+
+.font-lato-thin {
+  font-family: ThinFont, sans-serif;
+}

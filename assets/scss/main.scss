@@ -2,3 +2,9 @@
 @tailwind components;
 @tailwind utilities;
 
+@import "fonts";
+
+body, html {
+  font-family: RegularFont, sans-serif;
+  scroll-behavior: smooth;
+}
