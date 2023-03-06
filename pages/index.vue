@@ -6,7 +6,7 @@
     console.log('logout')
     signOut($auth).then(() => {
       useCookie('AM_TOKEN').value = null
-      router.push({ path: "/login" });
+      router.push({ path: "/auth/login" });
     })
   }
 
