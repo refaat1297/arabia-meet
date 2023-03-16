@@ -5,6 +5,9 @@
 </script>
 
 <template>
+  <Head>
+    <Title>Arabia Meet - Login</Title>
+  </Head>
   <LazyAuthLogin />
 </template>
 

@@ -1,5 +1,4 @@
-export default defineNuxtRouteMiddleware((to, from) => {
-  console.log('non cookies', useCookie('AM_TOKEN').value)
+export default defineNuxtRouteMiddleware(() => {
 
   if (!useCookie('AM_TOKEN').value) {
     return
