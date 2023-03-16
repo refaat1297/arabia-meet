@@ -1,13 +1,20 @@
 <script setup>
 
   import { createUserWithEmailAndPassword, signInWithPopup, GoogleAuthProvider } from 'firebase/auth'
+  import {errorMessages} from "~/components/Auth/Login/data";
   const email = ref('')
   const password = ref('')
   const { $auth } = useNuxtApp()
   const router = useRouter()
   const provider = new GoogleAuthProvider()
+  const errorMessage = ref('')
 
 
+
+  function resetInputs () {
+    email.value = ''
+    password.value = ''
+  }
 
   function signUp () {
     console.log('auth')
@@ -17,9 +24,8 @@
         router.push('/')
       })
       .catch(error => {
-        console.log('error', error.code)
-        console.log('error', error.message)
-        alert(error.message)
+        errorMessage.value = errorMessages[error.code]
+        resetInputs()
       })
   }
 
@@ -27,14 +33,12 @@
     signInWithPopup($auth, provider)
       .then(result => {
         const credential = GoogleAuthProvider.credentialFromResult(result);
-        const token = credential.accessToken;
-        useCookie('AM_TOKEN').value = token
+        useCookie('AM_TOKEN').value = credential.accessToken
         router.push('/')
       })
       .catch(error => {
-        console.log('error', error.code)
-        console.log('error', error.message)
-        alert(error.message)
+        errorMessage.value = errorMessages[error.code]
+        resetInputs()
       })
   }
 
@@ -46,18 +50,21 @@
       <AuthSignUpIconsPeopleChatting class="people-chatting" />
       <form @submit.prevent="signUp">
 
+        <p v-if="errorMessage" class="text-red-500 mb-2">{{ errorMessage }}</p>
+
+
         <div class="form-input mb-4">
           <div class="icon">
             <AuthSignUpIconsUser />
           </div>
-          <input type="text" autocomplete="false" placeholder="name@example.com" v-model="email" class="font-lato-regular">
+          <input type="text" autocomplete="false" placeholder="name@example.com" v-model="email" class="font-lato-regular placeholder:text-slate-500">
         </div>
 
         <div class="form-input mb-4">
           <div class="icon">
             <AuthSignUpIconsLock />
           </div>
-          <input type="password" autocomplete="false" v-model="password" placeholder="●●●●●●●" class="font-lato-regular">
+          <input type="password" autocomplete="false" v-model="password" placeholder="●●●●●●●" class="font-lato-regular placeholder:text-slate-500">
         </div>
 
         <button type="submit" class="mb-4">Sign Up</button>
@@ -66,7 +73,7 @@
       <p class="mb-4 font-lato-regular text-white text-center">Or</p>
       <button class="mb-4" @click="signUpWithGoogle">Sign Up with google</button>
 
-      <NuxtLink to="/auth/login" class="no-underline	font-lato-regular">Already have an account?</NuxtLink>
+      <NuxtLink to="/auth/login" class="no-underline font-lato-regular">Already have an account?</NuxtLink>
     </div>
   </div>
 </template>

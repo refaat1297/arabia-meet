@@ -1,13 +1,21 @@
 <script setup>
 
   import { signInWithEmailAndPassword, signInWithPopup, GoogleAuthProvider } from 'firebase/auth'
+  import {errorMessages} from './data'
+
   const email = ref('')
   const password = ref('')
   const { $auth } = useNuxtApp()
   const router = useRouter()
   const provider = new GoogleAuthProvider()
+  const errorMessage = ref('')
 
 
+
+  function resetInputs () {
+    email.value = ''
+    password.value = ''
+  }
 
   function signIn () {
     console.log('auth')
@@ -17,9 +25,8 @@
         router.push('/')
       })
       .catch(error => {
-        console.log('error', error.code)
-        console.log('error', error.message)
-        alert(error.message)
+        errorMessage.value = errorMessages[error.code]
+        resetInputs()
       })
   }
 
@@ -27,14 +34,12 @@
     signInWithPopup($auth, provider)
       .then(result => {
         const credential = GoogleAuthProvider.credentialFromResult(result);
-        const token = credential.accessToken;
-        useCookie('AM_TOKEN').value = token
+        useCookie('AM_TOKEN').value = credential.accessToken
         router.push('/')
       })
       .catch(error => {
-        console.log('error', error.code)
-        console.log('error', error.message)
-        alert(error.message)
+        errorMessage.value = errorMessages[error.code]
+        resetInputs()
       })
   }
 
@@ -44,20 +49,24 @@
   <div class="login-form overflow-y-scroll h-full grid grid-cols-1 grid-rows-1">
     <div>
       <AuthLoginIconsPeopleChatting class="people-chatting" />
+
       <form @submit.prevent="signIn">
+
+        <p v-if="errorMessage" class="text-red-500 mb-2">{{ errorMessage }}</p>
 
         <div class="form-input mb-4">
           <div class="icon">
             <AuthLoginIconsUser />
           </div>
-          <input type="text" autocomplete="false" placeholder="name@example.com" v-model="email" class="font-lato-regular">
+          <input type="text" autocomplete="false" placeholder="name@example.com" v-model="email" class="font-lato-regular placeholder:text-slate-500">
         </div>
+
 
         <div class="form-input mb-4">
           <div class="icon">
             <AuthLoginIconsLock />
           </div>
-          <input type="password" autocomplete="false" v-model="password" placeholder="●●●●●●●" class="font-lato-regular">
+          <input type="password" autocomplete="false" v-model="password" placeholder="●●●●●●●" class="font-lato-regular placeholder:text-slate-500">
         </div>
 
         <button type="submit" class="mb-4">Sign In</button>
