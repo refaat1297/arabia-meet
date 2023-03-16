@@ -43,19 +43,19 @@
 <template>
   <div class="login-form overflow-y-scroll h-full grid grid-cols-1 grid-rows-1">
     <div>
-      <SignUpIconsPeopleChatting class="people-chatting" />
+      <AuthSignUpIconsPeopleChatting class="people-chatting" />
       <form @submit.prevent="signUp">
 
         <div class="form-input mb-4">
           <div class="icon">
-            <SignUpIconsUser />
+            <AuthSignUpIconsUser />
           </div>
           <input type="text" autocomplete="false" placeholder="name@example.com" v-model="email" class="font-lato-regular">
         </div>
 
         <div class="form-input mb-4">
           <div class="icon">
-            <SignUpIconsLock />
+            <AuthSignUpIconsLock />
           </div>
           <input type="password" autocomplete="false" v-model="password" placeholder="●●●●●●●" class="font-lato-regular">
         </div>
