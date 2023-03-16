@@ -5,7 +5,7 @@ export default defineNuxtConfig({
     url: "http://localhost:8080"
   },
 
-  modules: ['@nuxt/devtools'],
+  modules: ['@nuxt/devtools', '@nuxtjs/tailwindcss'],
 
   runtimeConfig: {
     public: {
