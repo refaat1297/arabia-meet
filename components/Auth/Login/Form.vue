@@ -11,14 +11,17 @@
   const errorMessage = ref('')
 
 
-
-  function resetInputs () {
-    email.value = ''
-    password.value = ''
-  }
-
   function signIn () {
-    console.log('auth')
+    if (!email.value || !password.value) {
+      errorMessage.value = errorMessages['auth/fill-inputs']
+      return
+    }
+
+    if (!isValidEmail(email.value)) {
+      errorMessage.value = errorMessages['auth/invalid-email']
+      return
+    }
+
     signInWithEmailAndPassword($auth, email.value, password.value)
       .then(userCredential => {
         useCookie('AM_TOKEN').value = userCredential.user.accessToken
@@ -26,7 +29,6 @@
       })
       .catch(error => {
         errorMessage.value = errorMessages[error.code]
-        resetInputs()
       })
   }
 
@@ -39,7 +41,6 @@
       })
       .catch(error => {
         errorMessage.value = errorMessages[error.code]
-        resetInputs()
       })
   }
 
