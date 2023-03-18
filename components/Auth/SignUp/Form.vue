@@ -1,44 +1,68 @@
 <script setup>
 
   import { createUserWithEmailAndPassword, signInWithPopup, GoogleAuthProvider } from 'firebase/auth'
-  import {errorMessages} from "~/components/Auth/Login/data";
+  import {errorMessages} from "./data";
+  const name = ref('')
   const email = ref('')
   const password = ref('')
   const { $auth } = useNuxtApp()
-  const router = useRouter()
   const provider = new GoogleAuthProvider()
   const errorMessage = ref('')
 
 
-
-  function resetInputs () {
-    email.value = ''
-    password.value = ''
-  }
-
   function signUp () {
-    console.log('auth')
+    if (!name.value || !email.value || !password.value) {
+      errorMessage.value = errorMessages['auth/fill-inputs']
+      return
+    }
+
+    if (!isValidEmail(email.value)) {
+      errorMessage.value = errorMessages['auth/invalid-email']
+      return
+    }
+
     createUserWithEmailAndPassword($auth, email.value, password.value)
-      .then(userCredential => {
-        useCookie('AM_TOKEN').value = userCredential.user.accessToken
-        router.push('/')
+      .then(async userCredential => {
+        const resultUser = userCredential.user
+
+        useCookie('AM_TOKEN').value = resultUser.accessToken
+
+        const user = {
+          name: name.value,
+          email: email.value,
+          password: password.value,
+          uid: resultUser.uid
+        }
+
+        await createUser(user)
+
+        navigateTo('/')
       })
       .catch(error => {
         errorMessage.value = errorMessages[error.code]
-        resetInputs()
       })
   }
 
   function signUpWithGoogle () {
     signInWithPopup($auth, provider)
-      .then(result => {
+      .then(async result => {
         const credential = GoogleAuthProvider.credentialFromResult(result);
         useCookie('AM_TOKEN').value = credential.accessToken
-        router.push('/')
+        const resultUser = result.user;
+
+        const user = {
+          name: resultUser.displayName,
+          email: resultUser.email,
+          password: password.value,
+          avatar: resultUser.photoURL,
+          uid: resultUser.uid
+        }
+
+        await createUser(user)
+        navigateTo('/')
       })
       .catch(error => {
         errorMessage.value = errorMessages[error.code]
-        resetInputs()
       })
   }
 
@@ -56,6 +80,13 @@
         <div class="form-input mb-4">
           <div class="icon">
             <AuthSignUpIconsUser />
+          </div>
+          <input type="text" autocomplete="false" placeholder="Ahmed Refaat" v-model="name" class="font-lato-regular placeholder:text-slate-500">
+        </div>
+
+        <div class="form-input mb-4">
+          <div class="icon">
+            <AuthSignUpIconsEmail />
           </div>
           <input type="text" autocomplete="false" placeholder="name@example.com" v-model="email" class="font-lato-regular placeholder:text-slate-500">
         </div>
