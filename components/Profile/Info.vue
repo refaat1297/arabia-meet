@@ -6,7 +6,7 @@
 
     <div class="-translate-y-9 transition md:-translate-y-11 px-3 md:px-10 flex justify-start items-end gap-3 w-full">
       <div class="border-am-100 border-4 rounded-full flex-shrink-0">
-        <img class="w-20 h-20 md:w-24 md:h-24 transition rounded-full" src="https://friendkit.cssninja.io/assets/img/avatars/jenna.png" alt="">
+        <img class="w-20 h-20 md:w-24 md:h-24 transition rounded-full" src="https://friendkit.cssninja.io/assets/img/avatars/bobby.jpg" alt="">
       </div>
 
       <div class="flex justify-between items-center w-full">
