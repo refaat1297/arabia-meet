@@ -1,6 +1,6 @@
 <template>
   <div class="relative">
-    <div class="h-80 rounded overflow-hidden">
+    <div class="h-60 md:h-80 transition rounded overflow-hidden">
       <img class="object-cover w-full h-full" src="https://friendkit.cssninja.io/assets/img/demo/bg/4.png" alt="">
     </div>
 
