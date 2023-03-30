@@ -71,6 +71,8 @@ const users = [
 
 <template>
   <div class="profile-page min-h-screen bg-am-100 text-white py-4">
+    {{ $t('welcome') }}
+
     <div class="max-w-screen-lg px-6 md:px-12 xl:px-0 mx-auto">
 
       <ProfileInfo />

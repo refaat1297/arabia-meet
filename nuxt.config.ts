@@ -5,7 +5,27 @@ export default defineNuxtConfig({
     url: "http://localhost:8080"
   },
 
-  modules: ['@nuxt/devtools', '@nuxtjs/tailwindcss'],
+  modules: [
+    '@nuxt/devtools',
+    '@nuxtjs/tailwindcss',
+    '@nuxtjs/i18n'
+  ],
+
+  i18n: {
+    locales: [
+      { code: 'en', iso: 'en-EN', file: 'en-EN.json', domain: 'https://arabia-meet.vercel.app' },
+      { code: 'ar', iso: 'ar-AR', file: 'ar-AR.json', domain: 'https://ar.arabia-meet.vercel.app'}
+    ],
+    langDir: 'lang',
+    lazy: true,
+    defaultLocale: 'en',
+    differentDomains: true,
+    vueI18n: {
+      legacy: false,
+      locale: 'en',
+      fallbackLocale: 'en',
+    }
+  },
 
   runtimeConfig: {
     public: {
