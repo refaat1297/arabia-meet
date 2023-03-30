@@ -13,13 +13,12 @@ export default defineNuxtConfig({
 
   i18n: {
     locales: [
-      { code: 'en', iso: 'en-EN', file: 'en-EN.json', domain: 'https://arabia-meet.vercel.app' },
-      { code: 'ar', iso: 'ar-AR', file: 'ar-AR.json', domain: 'https://ar.arabia-meet.vercel.app'}
+      { code: 'en', iso: 'en-EN', file: 'en-EN.json' },
+      { code: 'ar', iso: 'ar-AR', file: 'ar-AR.json'}
     ],
     langDir: 'lang',
     lazy: true,
     defaultLocale: 'en',
-    differentDomains: true,
     vueI18n: {
       legacy: false,
       locale: 'en',
